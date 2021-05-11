@@ -10,21 +10,27 @@ endif
 " Reserved words {{{1
 
 syn keyword pokeKeyword as big break catch continue else for
-syn keyword pokeKeyword fun if in isa lambda little method
-syn keyword pokeKeyword pinned raise return struct try type
-syn keyword pokeKeyword union unit until var where while
+syn keyword pokeKeyword if in isa lambda little pinned raise
+syn keyword pokeKeyword return struct try type union unit
+syn keyword pokeKeyword until var where while
 
 syn keyword pokeType any byte int offset string uint void
 
-syn keyword pokeIntrinsic assert close flush get_endian get_ios 
-syn keyword pokeIntrinsic get_time getenv ioflags iosize load open 
+syn keyword pokeIntrinsic assert close flush get_endian get_ios
+syn keyword pokeIntrinsic get_time getenv ioflags iosize load open
 syn keyword pokeIntrinsic print printf rand set_endian set_ios sizeof
-syn keyword pokeIntrinsic strace term_begin_class term_begin_hyperlink 
+syn keyword pokeIntrinsic strace term_begin_class term_begin_hyperlink
 syn keyword pokeIntrinsic term_end_class term_end_hyperlink
 syn keyword pokeIntrinsic term_get_bgcolor syn keyword pokeIntrinsic
 syn keyword pokeIntrinsic term_get_color term_set_bgcolor term_set_color unmap
 
-syn keyword pokeValue OFFSET SELF __FILE__ __LINE__ 
+syn keyword pokeValue OFFSET SELF __FILE__ __LINE__
+
+syn keyword pokeKeyword fun method nextgroup=pokeFuncName skipwhite skipempty
+
+" Units
+
+syn keyword pokeUnit b M B Kb KB Mb MB Gb GB Kib KiB Mib MiB Gib GiB
 
 " Comments {{{1
 
@@ -32,9 +38,22 @@ syn region pokeComment start="\V/*" end="\V*/"
 syn region pokeComment start="#!" end="!#"
 syn region pokeComment start="//" end="$"
 
-" Strings {{{1
+" Values {{{1
 
-syn region pokeString start='"' end='"'
+syn match pokeEscape display contained /\\\([nrt\\'"]\|\%(x\x\{2}\)\|\%(\o\{1,3}\)\)/
+
+syn region pokeString start='"' end='"' contains=pokeEscape
+
+syn match pokeCharacter /'\([^\\]\|\\\(.\|\%(x\x\{2}\)\|\%(\o\{1,3}\)\)\)'/ contains=pokeEscape
+
+syn match pokeNumber display "\<[0-9][0-9_]*" nextgroup=pokeNumberType
+syn match pokeNumber display "\<0x[a-fA-F0-9_]\+" nextgroup=pokeNumberType
+syn match pokeNumber display "\<0o[0-7_]\+" nextgroup=pokeNumberType
+syn match pokeNumber display "\<0b[01_]\+" nextgroup=pokeNumberType
+
+syn match pokeNumberType contained /\<u\|U\|l\|L\|h\|H\|B\|n\|N\>/
+
+syn match pokeFuncName display contained "\<\w\+\>"
 
 " Constants
 
@@ -44,10 +63,16 @@ syn match pokeConstant "\<[A-Z][A-Z0-9_]\+\>"
 
 " Default highlighting {{{1
 
-hi def link pokeComment   Comment
-hi def link pokeConstant  Constant
-hi def link pokeIntrinsic Function
-hi def link pokeKeyword   Keyword
-hi def link pokeString    String
-hi def link pokeType      Type
-hi def link pokeValue     Constant
+hi def link pokeCharacter   String
+hi def link pokeComment     Comment
+hi def link pokeConstant    Constant
+hi def link pokeEscape      Special
+hi def link pokeFuncName    Function
+hi def link pokeIntrinsic   Function
+hi def link pokeKeyword     Keyword
+hi def link pokeNumber      Number
+hi def link pokeNumberType  Type
+hi def link pokeString      String
+hi def link pokeType        Type
+hi def link pokeUnit        Tag
+hi def link pokeValue       Constant
