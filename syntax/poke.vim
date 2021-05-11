@@ -14,7 +14,11 @@ syn keyword pokeKeyword if in isa lambda little pinned raise
 syn keyword pokeKeyword return struct try type union unit
 syn keyword pokeKeyword until var where while
 
-syn keyword pokeType any byte int offset string uint void
+syn keyword pokeType Comparator Exception POSIX_Time32 POSIX_Time64
+syn keyword pokeType bit byte char int int16 int32 int64 int8
+syn keyword pokeType long nibble off64 offset short string
+syn keyword pokeType uint uint16 uint32 uint64 uint8 ulong
+syn keyword pokeType uoff64 ushort void
 
 syn keyword pokeBuiltin assert atoi catos close crc32 exit
 syn keyword pokeBuiltin flush get_endian getenv get_ios get_time
