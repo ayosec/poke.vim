@@ -16,13 +16,14 @@ syn keyword pokeKeyword until var where while
 
 syn keyword pokeType any byte int offset string uint void
 
-syn keyword pokeIntrinsic assert close flush get_endian get_ios
-syn keyword pokeIntrinsic get_time getenv ioflags iosize load open
-syn keyword pokeIntrinsic print printf rand set_endian set_ios sizeof
-syn keyword pokeIntrinsic strace term_begin_class term_begin_hyperlink
-syn keyword pokeIntrinsic term_end_class term_end_hyperlink
-syn keyword pokeIntrinsic term_get_bgcolor syn keyword pokeIntrinsic
-syn keyword pokeIntrinsic term_get_color term_set_bgcolor term_set_color unmap
+syn keyword pokeBuiltin assert atoi catos close crc32 exit
+syn keyword pokeBuiltin flush get_endian getenv get_ios get_time
+syn keyword pokeBuiltin ioflags iosize keyword load ltrim open
+syn keyword pokeBuiltin pokeIntrinsic print printf ptime qsort rand
+syn keyword pokeBuiltin rtrim set_endian set_ios sizeof stoca strace
+syn keyword pokeBuiltin strchr syn term_begin_class term_begin_hyperlink
+syn keyword pokeBuiltin term_end_class term_end_hyperlink term_get_bgcolor
+syn keyword pokeBuiltin term_get_color term_set_bgcolor term_set_color unmap
 
 syn keyword pokeValue OFFSET SELF __FILE__ __LINE__
 
@@ -68,7 +69,7 @@ hi def link pokeComment     Comment
 hi def link pokeConstant    Constant
 hi def link pokeEscape      Special
 hi def link pokeFuncName    Function
-hi def link pokeIntrinsic   Function
+hi def link pokeBuiltin     Function
 hi def link pokeKeyword     Keyword
 hi def link pokeNumber      Number
 hi def link pokeNumberType  Type
