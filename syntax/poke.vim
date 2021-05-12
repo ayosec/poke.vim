@@ -20,6 +20,13 @@ syn keyword pokeType long nibble off64 offset short string
 syn keyword pokeType uint uint16 uint32 uint64 uint8 ulong
 syn keyword pokeType uoff64 ushort void
 
+syn keyword pokeValue OFFSET SELF __FILE__ __LINE__
+
+" Functions {{{1
+
+syn keyword pokeKeyword fun method nextgroup=pokeFuncName skipwhite skipempty
+syn match pokeFuncName display contained "\<\w\+\>"
+
 syn keyword pokeBuiltin assert atoi catos close crc32 exit
 syn keyword pokeBuiltin flush get_endian getenv get_ios get_time
 syn keyword pokeBuiltin ioflags iosize keyword load ltrim open
@@ -29,11 +36,10 @@ syn keyword pokeBuiltin strchr syn term_begin_class term_begin_hyperlink
 syn keyword pokeBuiltin term_end_class term_end_hyperlink term_get_bgcolor
 syn keyword pokeBuiltin term_get_color term_set_bgcolor term_set_color unmap
 
-syn keyword pokeValue OFFSET SELF __FILE__ __LINE__
+syn match pokeFuncName display /'\w\{2,}/
 
-syn keyword pokeKeyword fun method nextgroup=pokeFuncName skipwhite skipempty
 
-" Units
+" Units {{{1
 
 syn keyword pokeUnit b M B Kb KB Mb MB Gb GB Kib KiB Mib MiB Gib GiB
 
@@ -57,8 +63,6 @@ syn match pokeNumber display "\<0o[0-7_]\+" nextgroup=pokeNumberType
 syn match pokeNumber display "\<0b[01_]\+" nextgroup=pokeNumberType
 
 syn match pokeNumberType contained /\<u\|U\|l\|L\|h\|H\|B\|n\|N\>/
-
-syn match pokeFuncName display contained "\<\w\+\>"
 
 " Constants
 
